@@ -4,7 +4,6 @@ import (
 	"testing"
 
 	ethpb "github.com/prysmaticlabs/ethereumapis/eth/v1alpha1"
-	"github.com/prysmaticlabs/prysm/beacon-chain/state/stateutil"
 	"github.com/prysmaticlabs/prysm/shared/hashutil"
 	"github.com/prysmaticlabs/prysm/shared/htrutils"
 	"github.com/prysmaticlabs/prysm/shared/testutil"
@@ -29,7 +28,7 @@ func BenchmarkBlockHTR(b *testing.B) {
 		b.ResetTimer()
 		b.ReportAllocs()
 		for i := 0; i < b.N; i++ {
-			_, err := stateutil.BlockRoot(blk.Block)
+			_, err := blk.Block.HashTreeRoot()
 			require.NoError(b, err)
 		}
 	})
@@ -38,7 +37,7 @@ func BenchmarkBlockHTR(b *testing.B) {
 		b.ResetTimer()
 		b.ReportAllocs()
 		for i := 0; i < b.N; i++ {
-			_, err := stateutil.BlockRoot(blk.Block)
+			_, err := blk.Block.HashTreeRoot()
 			require.NoError(b, err)
 		}
 	})

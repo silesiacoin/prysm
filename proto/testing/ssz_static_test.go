@@ -9,7 +9,6 @@ import (
 
 	fssz "github.com/ferranbt/fastssz"
 	ethpb "github.com/prysmaticlabs/ethereumapis/eth/v1alpha1"
-	"github.com/prysmaticlabs/go-ssz"
 	"github.com/prysmaticlabs/prysm/beacon-chain/state"
 	pb "github.com/prysmaticlabs/prysm/proto/beacon/p2p/v1"
 	webpb "github.com/prysmaticlabs/prysm/proto/validator/accounts/v2"
@@ -53,7 +52,7 @@ func runSSZStaticTests(t *testing.T, config string) {
 						return beaconState.HashTreeRoot(context.Background())
 					}
 				} else {
-					htr = ssz.HashTreeRoot
+					t.Fatalf("Unsupported fast ssz object")
 				}
 
 				root, err := htr(object)
@@ -147,7 +146,7 @@ func UnmarshalledSSZ(t *testing.T, serializedBytes []byte, folderName string) (i
 	if o, ok := obj.(fssz.Unmarshaler); ok {
 		err = o.UnmarshalSSZ(serializedBytes)
 	} else {
-		err = ssz.Unmarshal(serializedBytes, obj)
+		return nil, errors.New("unsupported fast ssz type")
 	}
 	return obj, err
 }

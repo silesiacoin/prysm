@@ -1,9 +1,7 @@
 package sync
 
 import (
-	"bytes"
 	"context"
-	"reflect"
 	"sync"
 	"testing"
 	"time"
@@ -11,10 +9,7 @@ import (
 	"github.com/kevinms/leakybucket-go"
 	"github.com/libp2p/go-libp2p-core/network"
 	"github.com/libp2p/go-libp2p-core/protocol"
-	"github.com/protolambda/zssz"
-	"github.com/protolambda/zssz/types"
 	ethpb "github.com/prysmaticlabs/ethereumapis/eth/v1alpha1"
-	"github.com/prysmaticlabs/go-ssz"
 	mock "github.com/prysmaticlabs/prysm/beacon-chain/blockchain/testing"
 	"github.com/prysmaticlabs/prysm/beacon-chain/core/state"
 	db "github.com/prysmaticlabs/prysm/beacon-chain/db/testing"
@@ -179,22 +174,4 @@ type testList [][32]byte
 
 func (*testList) Limit() uint64 {
 	return 2 << 10
-}
-
-func TestSSZCompatibility(t *testing.T) {
-	rootA := [32]byte{'a'}
-	rootB := [32]byte{'B'}
-	rootC := [32]byte{'C'}
-	list := testList{rootA, rootB, rootC}
-	writer := bytes.NewBuffer([]byte{})
-	sszType, err := types.SSZFactory(reflect.TypeOf(list))
-	assert.NoError(t, err)
-	n, err := zssz.Encode(writer, list, sszType)
-	assert.NoError(t, err)
-	encodedPart := writer.Bytes()[:n]
-	fastSSZ, err := ssz.Marshal(list)
-	assert.NoError(t, err)
-	if !bytes.Equal(fastSSZ, encodedPart) {
-		t.Errorf("Wanted the same result as ZSSZ of %#x but got %#X", encodedPart, fastSSZ)
-	}
 }
