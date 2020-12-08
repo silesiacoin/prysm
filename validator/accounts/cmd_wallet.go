@@ -31,6 +31,7 @@ var WalletCommands = &cli.Command{
 				featureconfig.Mainnet,
 				featureconfig.PyrmontTestnet,
 				featureconfig.ToledoTestnet,
+				featureconfig.SscNet,
 				cmd.AcceptTosFlag,
 			}),
 			Before: func(cliCtx *cli.Context) error {
@@ -59,6 +60,7 @@ var WalletCommands = &cli.Command{
 				featureconfig.Mainnet,
 				featureconfig.PyrmontTestnet,
 				featureconfig.ToledoTestnet,
+				featureconfig.SscNet,
 				cmd.AcceptTosFlag,
 			}),
 			Before: func(cliCtx *cli.Context) error {
@@ -88,6 +90,7 @@ var WalletCommands = &cli.Command{
 				featureconfig.Mainnet,
 				featureconfig.PyrmontTestnet,
 				featureconfig.ToledoTestnet,
+				featureconfig.SscNet,
 				cmd.AcceptTosFlag,
 			}),
 			Before: func(cliCtx *cli.Context) error {

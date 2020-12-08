@@ -15,6 +15,11 @@ var (
 		Name:  "pyrmont",
 		Usage: "This defines the flag through which we can run on the Pyrmont Multiclient Testnet",
 	}
+	// Silesiacoin flag for the multiclient eth2 SilesiaCoin (SSC).
+	SscNet = &cli.BoolFlag{
+		Name:  "ssc",
+		Usage: "This defines the flag through which we can run on the Silesiacoin Multiclient",
+	}
 	// Mainnet flag for easier tooling, no-op
 	Mainnet = &cli.BoolFlag{
 		Value: true,
@@ -104,6 +109,7 @@ var ValidatorFlags = append(deprecatedFlags, []cli.Flag{
 	ToledoTestnet,
 	PyrmontTestnet,
 	Mainnet,
+	SscNet,
 	disableAccountsV2,
 	disableBlst,
 }...)
@@ -113,6 +119,7 @@ var SlasherFlags = append(deprecatedFlags, []cli.Flag{
 	disableLookbackFlag,
 	ToledoTestnet,
 	PyrmontTestnet,
+	SscNet,
 	Mainnet,
 }...)
 
@@ -128,6 +135,7 @@ var BeaconChainFlags = append(deprecatedFlags, []cli.Flag{
 	attestationAggregationStrategy,
 	ToledoTestnet,
 	PyrmontTestnet,
+	SscNet,
 	Mainnet,
 	disableBlst,
 	disableEth1DataMajorityVote,
