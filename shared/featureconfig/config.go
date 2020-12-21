@@ -37,6 +37,7 @@ type Flags struct {
 	MedallaTestnet bool // MedallaTestnet defines the flag through which we can enable the node to run on the Medalla testnet.
 	SpadinaTestnet bool // SpadinaTestnet defines the flag through which we can enable the node to run on the Spadina testnet.
 	ZinkenTestnet  bool // ZinkenTestnet defines the flag through which we can enable the node to run on the Zinken testnet.
+	L14Testnet     bool // L14 defines the flag through which we can enable the node to run on the L14 lukso testnet.
 
 	// Feature related flags.
 	WriteSSZStateTransitions   bool // WriteSSZStateTransitions to tmp directory.
@@ -133,6 +134,8 @@ func configureTestnet(ctx *cli.Context, cfg *Flags) {
 		params.UseZinkenConfig()
 		params.UseZinkenNetworkConfig()
 		cfg.ZinkenTestnet = true
+	} else if ctx.Bool(L14TestNet.Name) {
+
 	} else {
 		log.Warn("Running on ETH2 Mainnet")
 		params.UseMainnetConfig()

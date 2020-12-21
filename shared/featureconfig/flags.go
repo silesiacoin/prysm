@@ -15,6 +15,10 @@ var (
 		Name:  "onyx",
 		Usage: "This defines the flag through which we can run on the Onyx Prysm Testnet",
 	}
+	L14TestNet = &cli.BoolFlag{
+		Name:  "l14",
+		Usage: "This is POA Authority round lukso network",
+	}
 	// MedallaTestnet flag for the multiclient eth2 testnet.
 	MedallaTestnet = &cli.BoolFlag{
 		Name:  "medalla",
@@ -117,6 +121,7 @@ var ValidatorFlags = append(deprecatedFlags, []cli.Flag{
 	SpadinaTestnet,
 	ZinkenTestnet,
 	Mainnet,
+	L14TestNet,
 	disableAccountsV2,
 	enableBlst,
 }...)
@@ -129,6 +134,7 @@ var SlasherFlags = append(deprecatedFlags, []cli.Flag{
 	MedallaTestnet,
 	SpadinaTestnet,
 	ZinkenTestnet,
+	L14TestNet,
 	Mainnet,
 }...)
 
@@ -151,6 +157,7 @@ var BeaconChainFlags = append(deprecatedFlags, []cli.Flag{
 	SpadinaTestnet,
 	ZinkenTestnet,
 	Mainnet,
+	L14TestNet,
 	enableBlst,
 	disableEth1DataMajorityVote,
 	enablePeerScorer,
