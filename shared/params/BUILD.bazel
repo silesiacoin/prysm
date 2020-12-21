@@ -12,6 +12,7 @@ go_library(
         "network_config.go",
         "testnet_e2e_config.go",
         "testnet_pyrmont_config.go",
+        "testnet_l14_config.go",
         "testnet_toledo_config.go",
         "testutils.go",
     ],
