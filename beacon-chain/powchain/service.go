@@ -9,6 +9,7 @@ import (
 	"math/big"
 	"reflect"
 	"runtime/debug"
+	"strconv"
 	"sync"
 	"time"
 
@@ -797,7 +798,11 @@ func (s *Service) logTillChainStart() {
 	}
 
 	fields := logrus.Fields{
-		"Additional validators needed": valNeeded,
+		"Additional validators needed": strconv.FormatUint(valNeeded, 10),
+		"DEBUG M8B - blockNumber":      big.NewInt(int64(s.latestEth1Data.LastRequestedBlock)).String(),
+		"DEBUG M8B - blockTime":        strconv.FormatUint(blockTime, 10),
+		"DEBUG M8B - genesisTime":      strconv.FormatUint(genesisTime, 10),
+		"DEBUG M8B - MinGenesisTime":   strconv.FormatUint(params.BeaconConfig().MinGenesisTime, 10),
 	}
 	if secondsLeft > 0 {
 		fields["Generating genesis state in"] = time.Duration(secondsLeft) * time.Second
